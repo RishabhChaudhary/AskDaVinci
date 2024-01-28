@@ -1,0 +1,37 @@
+[tool.poetry]
+name = "askdavinci"
+version = "0.1.0"
+description = "Question answering from existing dataset or uploaded document."
+authors = ["RishabhChaudhary <rishabh.vijay01@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+llama-cpp-python = "^0.1.83"
+langchain = "^0.0.283"
+black = "^23.7.0"
+django = "^4.2.5"
+django-crispy-forms = "^2.1"
+crispy-bootstrap4 = "^2023.1"
+beautifulsoup4 = "^4.12.3"
+pandas = "^2.2.0"
+tiktoken = "^0.5.2"
+openai = "^1.9.0"
+numpy = "^1.26.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+format = "askdavinci.pythonci: format_code"
+
+
+
+
+
+
+
+

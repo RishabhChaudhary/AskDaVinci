@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load custom_filters %}
+{% block content %}
+        <div class="chat-box" id="chat-box">
+            <!-- User and robot messages go here -->
+            {% for chat in chats %}
+                <div class="user-message">
+                    <div class="user-avatar"></div>
+                    <div class="user-text">{{ chat.question }}</div>
+                </div>
+                {% with chat.answer|custom_split as parts %}
+                    <div class="bot-message">
+                        <div class="robot-avatar"></div>
+                        <div class="robot-text">{{ parts.0 }}</div>
+                    </div>
+                    {% if parts|length > 1 %}
+                    <div class="bot-message">
+                        <div class="robot-avatar"></div>
+                        <code class="robot-text">{{ parts.1 }}</code>
+                    </div>
+                    {% endif %}
+                    {% if parts|length > 2 and parts.2.strip != "" %}
+                    <div class="bot-message">
+                        <div class="robot-avatar"></div>
+                        <div class="robot-text">{{ parts.2 }}</div>
+                    </div>
+                    {% endif %}
+                {% endwith %}
+            {% endfor %}
+        </div>
+        <form class="input-box" id="input-question" method="POST">
+            {% csrf_token %}
+            <input type="text" class="message-input" id="user-input" name="question" placeholder="Type your message and press Enter">
+            <!-- <input type="text" class="message-input" id="user-input-ans" name="answer" placeholder="Type your message and press Enter"> -->
+            <button class="send-button" id="submit-question" type="submit"></button>
+        </form>
+{% endblock content %}
